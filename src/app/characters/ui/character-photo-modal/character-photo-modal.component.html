@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <div class="float-left">
+        <h5>{{ nameCharacter }}</h5>
+    </div>
+    <div class="float-right">
+        <ul class="header-dropdown">
+            <span aria-hidden="true" class="text-danger" (click)="closeModal('success')" style="cursor: pointer;"><i class="bi bi-x-lg"></i></span>
+        </ul>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div class="card-photo">
+        <img [src]="photoCharacter" alt="Character photo" class="character-photo">
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-sm btn-primary" (click)="closeModal('success')">Cerrar</button>
+</div>

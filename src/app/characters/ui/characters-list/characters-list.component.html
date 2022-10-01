@@ -1,0 +1,110 @@
+<div class="container">
+    <h1>Personajes de la serie</h1>
+    <div class="d-flex py-2 align-items-center justify-content-center">
+        <button class="btn btn-sm btn-primary" (click)="changeView()">
+            Change view
+            <i class="bi bi-{{tableView? 'grid-fill': 'list-ul'}}"></i>
+        </button>
+        <div style="width: 50px;height: 50px;">
+            <img style="width: 100%;height: 100%;object-fit: cover;" src="{{tableView ? '../../../../assets/icons/rick-and-morty-30992-64x64.ico' : '../../../../assets/icons/rick-and-morty-31029-64x64.ico'}}" alt="">
+        </div>
+    </div>
+    <ng-container *ngIf="tableView; else gridCharacters">
+        <div class="table-characters_container">
+            <table class="table table-bordered table-sm table-hover">
+                <thead class="thead-mcs text-center table-success">
+                    <tr>
+                        <th>Item</th>
+                        <th>Nombre</th>
+                        <th>Especie</th>
+                        <th>Género</th>
+                        <th>Estado</th>
+                        <th>Tipo</th>
+                        <th>Ubicacion</th>
+                        <th>Origen</th>
+                        <th>Fotografia</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center" style="vertical-align: middle">
+                    <ng-container *ngFor="let character of characters?.results; let idx = index">
+                        <tr>
+                            <td>
+                                {{ idx + 1 }}
+                            </td>
+                            <td>
+                                {{ character?.name }}
+                            </td>
+                            <td>
+                                {{ character?.species }}
+                            </td>
+                            <td>
+                                {{ character?.gender }}
+                            </td>
+                            <td>
+                                {{ character?.status }}
+                            </td>
+                            <td>
+                                {{ character?.type ? character?.type : 'Desconocido' }}
+                            </td>
+                            <td>
+                                <span *ngIf="character?.location?.name; else locationTemplate">Este personaje fue visto por
+                                    ultima vez en {{ character?.location?.name }}
+                                    {{
+                                    character?.location?.dimension !== 'unknown'
+                                    ? 'en la dimension de ' + character?.location?.dimension
+                                    : 'no se conoce la dimension'
+                                    }}</span>
+                                <ng-template #locationTemplate>
+                                    <span>No se conoce su ubicacion</span>
+                                </ng-template>
+                            </td>
+                            <td>
+                                {{
+                                character?.origin?.name
+                                ? 'Este personaje es de ' + character?.origin?.name
+                                : 'No se sabe'
+                                }}
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-success" (click)="openModalPhoto(character || undefined)"><i
+                                        class="bi bi-image-fill"></i></button>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+    <ng-template #gridCharacters>
+        <app-characters-grid [characters]="characters"></app-characters-grid>
+    </ng-template>
+
+    <div class="d-flex justify-content-between align-items-center" style="padding-top: 30px">
+        <ngb-pagination
+            [collectionSize]="collectionSize"
+            [directionLinks]="true"
+            [pageSize]="20"
+            [ellipses]="true"
+            [maxSize]="3"
+            [boundaryLinks]="true"
+            [rotate]="true"
+            [(page)]="page"
+            (pageChange)="onPageChange($event)"
+        ></ngb-pagination>
+        <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 1rem">
+            <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+            <input
+                #i
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                class="form-control custom-pages-input text-center px-0"
+                id="paginationInput"
+                [value]="page"
+                (keyup.enter)="onPageChange(i.value)"
+                aria-labelledby="paginationInputLabel paginationDescription"
+                style="width: 3rem"
+            />
+        </div>
+    </div>
+</div>

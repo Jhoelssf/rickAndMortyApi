@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="d-flex flex-wrap justify-content-around align-items-center">
+        <ng-container *ngFor="let character of characters.results">
+            <div class="card" style="width: 18rem; margin-top: 10px">
+                <img [src]="character?.image" class="card-img-top" alt="">
+                <div class="card-body card-body_character">
+                    <h5 class="card-title">{{character?.name}}</h5>
+                    <p class="card-text">
+                        genero: {{character?.gender}}
+                    </p>
+                    <p class="card-text">
+                        origen: {{character?.origin?.name}}
+                    </p>
+                    <p class="card-text">
+                        ubicacion: {{character?.location?.name}}
+                    </p>
+                    <!-- <a class="btn btn-rickmorty">Go somewhere</a> -->
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
