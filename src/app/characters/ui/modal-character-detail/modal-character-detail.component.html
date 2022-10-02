@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <div class="float-left">
+        <h5>{{ character.name }}</h5>
+    </div>
+    <div class="float-right">
+        <ul class="header-dropdown">
+            <span aria-hidden="true" class="text-danger" (click)="closeModal('success')" style="cursor: pointer;"><i
+                    class="bi bi-x-lg"></i></span>
+        </ul>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div class="card-photo">
+        <img [src]="character.image" alt="Character photo" class="character-photo">
+    </div>
+    <hr>
+    <div>
+        <div><span><strong>Nombre:</strong> {{ character.name }}</span></div>
+        <div><span><strong>Especie:</strong> {{ character.species }}</span></div>
+        <div><span><strong>Genero:</strong> {{ character.gender }}</span></div>
+        <div><span><strong>Estado:</strong> {{ character.status }}</span></div>
+        <div><span><strong>Tipo:</strong> {{ character.type ? character.type : 'Desconocido' }}</span></div>
+        <div>
+            <span><strong>Ubicacion:</strong>
+                <span *ngIf="character?.location?.name; else locationTemplate">Este personaje fue visto por
+                    ultima vez en {{ character.location?.name }}
+                    {{
+                    character.location?.dimension !== 'unknown'
+                    ? 'en la dimension de ' + character.location?.dimension
+                    : 'no se conoce la dimension'
+                    }}</span>
+                <ng-template #locationTemplate>
+                    <span>No se conoce su ubicacion</span>
+                </ng-template>
+            </span>
+        </div>
+        <div>
+            <span><strong>Origen:</strong>
+                {{
+                character.origin?.name
+                ? 'Este personaje es de ' + character.origin?.name
+                : 'No se sabe'
+                }}
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-sm btn-primary d-flex" [disabled]="loading" (click)="claimCharacter()">Reclamar <div [ngClass]="loading ? 'rotating' : ''"><i class="bi bi-{{loading ? 'arrow-repeat' : 'award'}}"></i></div></button>
+    <button class="btn btn-sm btn-primary" [disabled]="loading" (click)="closeModal('success')">Cerrar</button>
+</div>

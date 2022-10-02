@@ -1,0 +1,9 @@
+<div>
+    <div class="my_collection-grid">
+        <div class="container-collection">
+            <ng-container *ngFor="let character of characters">
+                <img (click)="onClaimCharacter(character)" [src]="character.image" alt="">
+            </ng-container>
+        </div>
+    </div>
+</div>

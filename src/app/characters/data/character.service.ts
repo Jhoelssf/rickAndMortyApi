@@ -27,7 +27,7 @@ export class CharacterService {
         return data.characters
     }
 
-    async getCharactersByIdsQuery(ids: number[]): Promise<Character[]> {
+    async getCharactersByIdsQuery(ids: string[]): Promise<Character[]> {
         const resp$ = this.getCharactersByIds.fetch({ ids }, { fetchPolicy: 'network-only' })
         const { data } = await firstValueFrom(resp$)
         return data.charactersByIds

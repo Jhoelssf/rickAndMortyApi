@@ -6,10 +6,12 @@ import { CharactersListComponent } from './ui/characters-list/characters-list.co
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CharacterPhotoModalComponent } from './ui/character-photo-modal/character-photo-modal.component';
 import { CharactersGridComponent } from './ui/characters-grid/characters-grid.component';
-import { MyCollectionComponent } from './ui/my-collection/my-collection.component'
+import { MyCollectionComponent } from './ui/my-collection/my-collection.component';
+import { ModalCharacterDetailComponent } from './ui/modal-character-detail/modal-character-detail.component';
+import { ClaimCharacterComponent } from './ui/claim-character/claim-character.component'
 
 @NgModule({
-    declarations: [CharactersListComponent, CharacterPhotoModalComponent, CharactersGridComponent, MyCollectionComponent],
+    declarations: [CharactersListComponent, CharacterPhotoModalComponent, CharactersGridComponent, MyCollectionComponent, ModalCharacterDetailComponent, ClaimCharacterComponent],
     imports: [CommonModule, CharactersRoutingModule, NgbModule]
 })
 export class CharactersModule {}

@@ -8,7 +8,7 @@ interface Response {
 }
 
 interface Params {
-    ids: number[]
+    ids: string[]
 }
 
 @Injectable({
@@ -21,6 +21,15 @@ export class GetCharactersByIds extends Query<Response, Params> {
                 id
                 name
                 image
+                location {
+                    id
+                    name
+                }
+                gender
+                status
+                type
+                created
+                species
             }
         }
     `

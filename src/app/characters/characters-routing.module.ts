@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { CharactersListComponent } from './ui/characters-list/characters-list.component'
+import { ClaimCharacterComponent } from './ui/claim-character/claim-character.component'
 import { MyCollectionComponent } from './ui/my-collection/my-collection.component'
 
 const routes: Routes = [
@@ -12,6 +13,10 @@ const routes: Routes = [
     {
         path: 'my-collection',
         component: MyCollectionComponent
+    },
+    {
+        path: 'claim',
+        component: ClaimCharacterComponent
     }
 ]
 

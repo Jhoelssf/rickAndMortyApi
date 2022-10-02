@@ -1,1 +1,22 @@
-<h1>Reclama tu personaje</h1>
+<div class="container">
+    <h1>Mi coleccion</h1>
+
+    <div class="d-flex flex-wrap justify-content-center my-3">
+        <ng-container *ngFor="let myCharacter of myCharacters">
+            <div class="card-my-collection mx-2 mt-2">
+                <img class="thumb"
+                    [src]="myCharacter.image"
+                    alt="" />
+                <div class="infos">
+                    <h2 class="title">{{myCharacter.name}}<span class="flag"></span></h2>
+                    <h3 class="date">{{myCharacter.created | date: "medium"}}</h3>
+                    <h3 class="seats">{{myCharacter.location?.name !== 'unknown' ? myCharacter.location?.name : 'Desconocido'}}</h3>
+                    <p class="txt">
+                        {{myCharacter.species}}
+                    </p>
+                    <!-- <h3 class="details">event details</h3> -->
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
